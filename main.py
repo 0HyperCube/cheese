@@ -6,7 +6,6 @@ import time
 def read_cell(data, row, column, type, name, empty_val=list):
 	try:
 		v = data[row][column]
-		print(v)
 		if v == "" and empty_val!=list:
 			return empty_val
 		if type==bool:
@@ -51,12 +50,15 @@ if os.path.isfile(FILE_NAME):
 	# Read meta rows
 	income_tax = read_cell(data, TAX_ROW, 1, float, "Income Tax")/100
 	min_wage   = read_cell(data, MIN_WAGE_ROW, 1, int, "Minimum Wage")
-	treasury   = read_cell(data, TREASURY_ROW, 1, int, "Treasury")
+	treasury   = read_cell(data, TREASURY_ROW, 1, float, "Treasury")
 	last_pay   = read_cell(data, LAST_PAY_ROW, 1, int, "Last pay")
 	
 	# Check if already payed already today
 	if day<=last_pay:
 		if input("Already payed today. Press 'y' to continue anyway ").lower() != "y":
+			sys.exit()
+	else:
+		if input("Press 'y' to caluclate today's pay ").lower() != "y":
 			sys.exit()
 
 	# Read citizen payment rows
@@ -79,13 +81,14 @@ if os.path.isfile(FILE_NAME):
 			balance+=pay
 			treasury-=pay
 
-		# Store data
-		data[row] = [name, str(balance), data[row][2], str(wage)]
+			# Store data
+			data[row] = [name, str(balance), "Y", str(wage)]
 
 		row+=1
 
 	# Store treasury amount
 	data[TREASURY_ROW][1] = str(treasury)
+	data[LAST_PAY_ROW][1] = str(day)
 
 	# Check if government is in debt
 	if treasury<0:
@@ -116,3 +119,5 @@ else:
 	print("- Balance - Total cheesecoins. Defaults to 0.")
 	print("- Government Paid - Are they payed by the government (deducts wage from treasury). Defaults to no")
 	print("- Wage - Money per day. Defaults to minimum wage.")
+
+input()
