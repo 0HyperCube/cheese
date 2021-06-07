@@ -2,33 +2,39 @@
 
 ### Features
 
-- Read and write from a spreadsheet
+- Read and write from Markdown
+- Easy to edit
+- Table formatting
 - Intuative design
-- Fully documented code
-- Check if already payed on that day
 - All parameters in spreadsheet for ease of access
 - Lifelong support (use the issues tab in this repository for features and bugs)
 
-### How to use
+### How to calculate
 
 - Clone or download this via the green button at the top.
-- Run this python file.
-- Locate the `citizens.csv` file in the current directory.
-- You can edit this with a spreasheet application like LibreOffice Calc or Excel
-- Run file again to calculate tax
+- Run `__init__.py`
 
-### Spreadsheet Information
+### How to edit
 
-Data columns should not have symbols in them. Booleans should be 'Y' or 'N'
+Edit any of the values in any of the sections. If the table formatting is messy, run the `__init__.py` again to fix.
 
-Meta columns include:
-- Income Tax - A value between 1 and 100 for the taxation percentage
-- Minimum wage - The wage for people with no wage specified. Anyone with a wage lower than this will have their wage increased.
-- Treasury - Amount held by the treasury (government).
-- Last Pay - Days since UNIX timestamp of last pay (do not edit)
+The Citizens section consists of:
+- Id (autofilled) - Used to assign pay
+- Name - Identifyer of user
+- Balance (&#129472;) - The user's current money
+- Employer Id - The id of the person who employs them. If it is blank then the user is unemployed. The state is employer '0'
+- Wage - The amount of pay. If it is blank and the user is employed then it is the minimum wage.
 
-Citizen columns include:
-- Name - Name / ID of citizen.
-- Balance - Total cheesecoins. Defaults to 0.
-- Government Paid - Are they payed by the government (deducts wage from treasury). Defaults to no
-- Wage - Money per day. Defaults to minimum wage.
+You do not have to specify anything any of the fields. An example of what you might type below the auto generated *Citizens* section is below. To format this just run the `__init__.py`.
+```
+||Henry|4|0|100|
+||Jeff|9|0|9|
+||Bob|4|||
+```
+outputs:
+| Id (auto) | Name     | Balance (&#129472;) | Employer Id (blank=unemployed 0=state) | Wage (blank=minimum for employed) |
+| --------- | -------- | ------------------- | -------------------------------------- | --------------------------------- |
+| 0         | Treasury | 100.00              | None                                   | None                              |
+| None      | Henry    | 4.00                | 0                                      | 100.00                            |
+| None      | Jeff     | 9.00                | 0                                      | 9.00                              |
+| None      | Bob      | 4.00                | None                                   | None                              |
