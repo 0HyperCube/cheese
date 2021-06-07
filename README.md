@@ -1,4 +1,7 @@
-# Cheese-coin tax
+# [Finances Markdown](https://github.com/0HyperCube/cheese/blob/main/Finances.md)
+Available at https://github.com/0HyperCube/cheese/blob/main/Finances.md, this is the auto generated wealth / tax charts.
+
+# Documentation
 
 ### Features
 
@@ -8,6 +11,10 @@
 - Intuative design
 - All parameters in spreadsheet for ease of access
 - Lifelong support (use the issues tab in this repository for features and bugs)
+
+### How to generate clean file
+- Delete the current `Finances.md` file.
+- Run `__init__.py`
 
 ### How to calculate
 
